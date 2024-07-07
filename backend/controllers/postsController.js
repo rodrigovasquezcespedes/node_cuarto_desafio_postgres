@@ -31,7 +31,7 @@ const deletePost = async id => {
     const { rows } = await pool.query(query, values)
 
     if (rows.length === 0) {
-      throw new Error('Post not found')
+      throw new Error('Post no encontrado')
     }
 
     return rows
@@ -50,7 +50,7 @@ const updatePost = async (id, post) => {
     const { rows } = await pool.query(query, values)
 
     if (rows.length === 0) {
-      throw new Error('Post not found')
+      throw new Error('Post no encontrado')
     }
 
     return rows[0]

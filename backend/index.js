@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
 })
 
 // Usar rutas
-app.use('', postsRoutes)
+app.use(postsRoutes)
 
 app.all('*', (req, res) => res.status(404).json({ status: false, message: 'pagina no encontrada' }))
 

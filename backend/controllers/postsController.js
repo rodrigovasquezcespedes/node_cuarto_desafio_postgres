@@ -13,8 +13,7 @@ const getPost = async () => {
 
 const createPost = async ({ titulo, url, descripcion, likes = 0 }) => {
   try {
-    const query =
-      'INSERT INTO posts (titulo, img, descripcion, likes) VALUES ($1, $2, $3, $4) RETURNING *'
+    const query = 'INSERT INTO posts (titulo, img, descripcion, likes) VALUES ($1, $2, $3, $4) RETURNING *'
     const values = [titulo, url, descripcion, likes]
     const { rows } = await pool.query(query, values)
     return rows
@@ -71,4 +70,5 @@ const updateLike = async (id) => {
     throw new Error(`Error al actualizar el like: ${error.message}`)
   }
 }
+
 module.exports = { getPost, createPost, deletePost, updatePost, updateLike }

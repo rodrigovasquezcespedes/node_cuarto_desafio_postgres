@@ -11,6 +11,18 @@ const getPost = async () => {
   }
 }
 
+const getPostId = async (id) => {
+  try {
+    const query = 'SELECT * FROM posts where id=$1'
+    const values = [id]
+    const { rows } = await pool.query(query, values)
+    return rows
+  } catch (error) {
+    console.error(`Error al obtener los posts: ${error.message}`)
+    throw new Error(`Error al obtener los posts: ${error.message}`)
+  }
+}
+
 const createPost = async ({ titulo, url, descripcion, likes = 0 }) => {
   try {
     const query = 'INSERT INTO posts (titulo, img, descripcion, likes) VALUES ($1, $2, $3, $4) RETURNING *'
@@ -71,4 +83,4 @@ const updateLike = async (id) => {
   }
 }
 
-module.exports = { getPost, createPost, deletePost, updatePost, updateLike }
+module.exports = { getPost, getPostId, createPost, deletePost, updatePost, updateLike }

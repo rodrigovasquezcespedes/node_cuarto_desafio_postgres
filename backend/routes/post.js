@@ -1,10 +1,20 @@
 const express = require('express')
 const router = express.Router()
-const { getPost, createPost, deletePost, updatePost, updateLike } = require('../controllers/postsController')
+const { getPost, getPostId, createPost, deletePost, updatePost, updateLike } = require('../controllers/postsController')
 
 router.get('/posts', async (req, res) => {
   try {
     const posts = await getPost()
+    res.status(200).send(posts)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+})
+
+router.get('/posts', async (req, res) => {
+  const { id } = req.params
+  try {
+    const posts = await getPostId(id)
     res.status(200).send(posts)
   } catch (error) {
     res.status(400).send(error)

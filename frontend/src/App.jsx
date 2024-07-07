@@ -16,6 +16,15 @@ function App() {
     setPosts([...posts]);
   };
 
+  const getPostById = async (id) => {
+    try {
+      const response = await axios.get(`${urlBaseServer}/posts/${id}`);
+      setPosts(response.data);
+    } catch (error) {
+      console.error("Error en busquesa de post:", error);
+    }
+  };
+
   const agregarPost = async () => {
     const post = { titulo, url: imgSrc, descripcion };
     await axios.post(urlBaseServer + "/posts", post);
@@ -53,6 +62,7 @@ function App() {
             setImgSRC={setImgSRC}
             setDescripcion={setDescripcion}
             agregarPost={agregarPost}
+            actualizaPost={actualizaPost}
           />
         </div>
         <div className="col-12 col-sm-8 px-5 row posts align-items-start">
@@ -62,7 +72,7 @@ function App() {
               post={post}
               like={like}
               eliminarPost={eliminarPost}
-              actualizaPost={actualizaPost}
+              getPostById={getPostById}
             />
           ))}
         </div>

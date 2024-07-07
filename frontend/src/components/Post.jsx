@@ -2,6 +2,7 @@ function Post({
   post: { id, titulo, img, descripcion, likes },
   like,
   eliminarPost,
+  actualizaPost
 }) {
   return (
     <div className="card col-12 col-sm-4 d-inline mx-0 px-3">
@@ -26,6 +27,10 @@ function Post({
             <i
               onClick={() => eliminarPost(id)}
               className="fa-solid fa-x"
+            ></i>
+              <i
+              onClick={() => actualizaPost(id)}
+              className="fa-solid fa-pen-nib"
             ></i>
           </div>
         </div>

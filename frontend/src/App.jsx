@@ -34,6 +34,11 @@ function App() {
     getPosts();
   };
 
+  const actualizaPost = async (id) => {
+    await axios.put(urlBaseServer + `/posts/${id}`);
+    getPosts();
+  };
+
   useEffect(() => {
     getPosts();
   }, []);
@@ -57,6 +62,7 @@ function App() {
               post={post}
               like={like}
               eliminarPost={eliminarPost}
+              actualizaPost={actualizaPost}
             />
           ))}
         </div>
